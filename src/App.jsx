@@ -50,6 +50,7 @@ function App() {
       <Toaster position="top-right" reverseOrder={false} />
       <Routes>
       <Route path="/login" element={user ? <Navigate to={defaultAuthedPath} replace /> : <LoginPage />} />
+      <Route path="/signup" element={user && user.role !== 'principal' && user.role !== 'hod' && user.role !== 'professor' ? <Navigate to={defaultAuthedPath} replace /> : <SignupPage />} />
       
       {/* Principal Routes */}
       <Route element={<ProtectedRoute allowedRoles={["principal"]} />}>
@@ -93,7 +94,6 @@ function App() {
       {/* Shared Approver Routes */}
       <Route element={<ProtectedRoute allowedRoles={["principal", "hod", "professor"]} />}>
         <Route path="/pending-approvals" element={<PendingApprovalsPage />} />
-        <Route path="/signup" element={<SignupPage />} />
       </Route>
 
       <Route path="*" element={<Navigate to={defaultAuthedPath} replace />} />

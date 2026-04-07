@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import api from "../services/api.js";
 
@@ -147,9 +147,31 @@ function SignupPage() {
         <div className="absolute top-10 right-10 w-[20%] h-[20%] bg-indigo-50 rounded-full blur-[80px] pointer-events-none"></div>
         
         <div className="max-w-md w-full relative z-10">
+          {!user && (
+            <div className="flex bg-zinc-100 p-1.5 rounded-2xl mb-10">
+              <Link
+                to="/login"
+                className="flex-1 py-2.5 text-sm font-bold rounded-xl text-zinc-500 hover:text-zinc-700 text-center transition-all"
+              >
+                Login
+              </Link>
+              <button
+                className="flex-1 py-2.5 text-sm font-bold rounded-xl bg-white text-indigo-600 shadow-sm transition-all"
+              >
+                Register
+              </button>
+            </div>
+          )}
+
           <div className="mb-10">
-            <h2 className="text-3xl font-bold text-zinc-900 tracking-tight">Register New User</h2>
-            <p className="mt-3 text-zinc-500 text-sm">Create accounts for your department members.</p>
+            <h2 className="text-3xl font-bold text-zinc-900 tracking-tight">
+              {user ? "Register New User" : "Institution Registration"}
+            </h2>
+            <p className="mt-3 text-zinc-500 text-sm">
+              {user 
+                ? "Create accounts for your department members." 
+                : "Sign up as a Principal to start managing your institution."}
+            </p>
           </div>
 
           <form className="space-y-5" onSubmit={handleSignup}>

@@ -81,14 +81,27 @@ function LoginPage() {
 
       <div className="max-w-md w-full relative z-10">
         <div className="bg-white/70 backdrop-blur-2xl border border-white shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] rounded-[2.5rem] p-10 sm:p-12 overflow-hidden">
-          <div className="mb-10 text-center">
+          <div className="mb-0 text-center">
             <div className="inline-flex items-center justify-center p-3 mb-6 bg-indigo-600 rounded-2xl text-white shadow-lg shadow-indigo-200">
                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
               </svg>
             </div>
-            <h2 className="text-3xl font-bold text-zinc-900 tracking-tight">Login</h2>
-            <p className="mt-3 text-zinc-500 text-sm">Please enter your credentials to login</p>
+            <h2 className="text-3xl font-bold text-zinc-900 tracking-tight italic">LMS Elite</h2>
+          </div>
+
+          <div className="flex bg-zinc-100 p-1.5 rounded-2xl mb-8">
+            <button
+              className="flex-1 py-2.5 text-sm font-bold rounded-xl bg-white text-indigo-600 shadow-sm transition-all"
+            >
+              Login
+            </button>
+            <Link
+              to="/signup"
+              className="flex-1 py-2.5 text-sm font-bold rounded-xl text-zinc-500 hover:text-zinc-700 text-center transition-all"
+            >
+              Register
+            </Link>
           </div>
 
           <form className="space-y-6" onSubmit={handleLogin}>
@@ -160,8 +173,7 @@ function LoginPage() {
           </form>
 
           <p className="mt-10 text-center text-sm text-zinc-500">
-            Don't have an account?{" "}
-            <span className="font-semibold text-zinc-900">Contact admin</span>
+            For department accounts, <span className="font-semibold text-zinc-900">contact your administrator.</span>
           </p>
         </div>
       </div>
