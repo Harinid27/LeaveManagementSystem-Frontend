@@ -47,8 +47,8 @@ function SignupPage() {
 
   const [validationErrors, setValidationErrors] = useState({});
 
-  // Filter available roles based on current user's role
-  const availableRoles = user ? roleHierarchy[user.role] || [] : [];
+  // Filter available roles: if not logged in, only allow 'principal'
+  const availableRoles = user ? (roleHierarchy[user.role] || []) : ["principal"];
 
   useEffect(() => {
     if (availableRoles.length > 0 && !form.role) {
@@ -85,9 +85,9 @@ function SignupPage() {
     setLoading(true);
     try {
       await api.post("/auth/register", form);
-      setSuccess("User created successfully!");
+      setSuccess(user ? "User created successfully!" : "Account created! Redirecting to login...");
       setTimeout(() => {
-        navigate("/users");
+        navigate(user ? "/users" : "/login");
       }, 2000);
     } catch (err) {
       setError(err.response?.data?.message || "Failed to create user. Please try again.");
