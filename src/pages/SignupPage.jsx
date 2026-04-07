@@ -42,7 +42,6 @@ function SignupPage() {
     email: "",
     password: "",
     role: "",
-    department: "",
   });
 
   const [validationErrors, setValidationErrors] = useState({});
@@ -66,7 +65,6 @@ function SignupPage() {
     else if (form.password.length < 6) errors.password = "Password must be at least 6 characters";
     
     if (!form.role) errors.role = "Role is required";
-    if (!form.department.trim()) errors.department = "Department is required";
     
     return errors;
   };
@@ -233,34 +231,20 @@ function SignupPage() {
                 {validationErrors.password && <p className="text-xs text-red-500 mt-1 ml-1">{validationErrors.password}</p>}
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div className="space-y-1.5">
-                  <label className="text-sm font-medium text-zinc-700 ml-1">Role</label>
-                  <select
-                    value={form.role}
-                    onChange={(e) => setForm({...form, role: e.target.value})}
-                    className="block w-full px-5 py-3.5 rounded-2xl bg-white border border-zinc-200 text-zinc-900 focus:ring-4 focus:ring-indigo-600/5 focus:border-indigo-600 transition-all duration-300 appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20stroke%3D%22%236B7280%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.5%22%20d%3D%22m6%208%204%204%204-4%22%2F%3E%3C%2Fsvg%3E')] bg-[length:1.25rem_1.25rem] bg-[right_1.25rem_center] bg-no-repeat"
-                  >
-                    {availableRoles.map((role) => (
-                      <option key={role} value={role}>
-                        {role.toUpperCase()}
-                      </option>
-                    ))}
-                    {availableRoles.length === 0 && <option disabled>No roles available</option>}
-                  </select>
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-sm font-medium text-zinc-700 ml-1">Department</label>
-                  <input
-                    type="text"
-                    value={form.department}
-                    onChange={(e) => setForm({...form, department: e.target.value})}
-                    className={`block w-full px-5 py-3.5 rounded-2xl bg-white border ${validationErrors.department ? 'border-red-300' : 'border-zinc-200'} text-zinc-900 focus:ring-4 focus:ring-indigo-600/5 focus:border-indigo-600 transition-all duration-300`}
-                    placeholder="Computer Science"
-                  />
-                  {validationErrors.department && <p className="text-xs text-red-500 mt-1 ml-1">{validationErrors.department}</p>}
-                </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-zinc-700 ml-1">Role</label>
+                <select
+                  value={form.role}
+                  onChange={(e) => setForm({...form, role: e.target.value})}
+                  className="block w-full px-5 py-3.5 rounded-2xl bg-white border border-zinc-200 text-zinc-900 focus:ring-4 focus:ring-indigo-600/5 focus:border-indigo-600 transition-all duration-300 appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20stroke%3D%22%236B7280%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.5%22%20d%3D%22m6%208%204%204%204-4%22%2F%3E%3C%2Fsvg%3E')] bg-[length:1.25rem_1.25rem] bg-[right_1.25rem_center] bg-no-repeat"
+                >
+                  {availableRoles.map((role) => (
+                    <option key={role} value={role}>
+                      {role.toUpperCase()}
+                    </option>
+                  ))}
+                  {availableRoles.length === 0 && <option disabled>No roles available</option>}
+                </select>
               </div>
             </div>
 
